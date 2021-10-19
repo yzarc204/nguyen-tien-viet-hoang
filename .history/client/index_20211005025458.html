@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Personal Card</title>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript">
+        let url = window.location.origin + '/thong-tin-thanh-toan/template.html';
+        $.get(url, (data, status) => {
+            rawHtml = data;
+            if (status == 'success') {
+                const doc = new DOMParser().parseFromString(data, 'text/html');
+                doc.head.querySelectorAll('link').forEach(link => {
+                    document.head.appendChild(link);
+                })
+                document.body.appendChild(doc.querySelector('.container'));
+                document.body.appendChild(doc.querySelector('.modal'));
+            } else {
+                window.location = window.location.origin;
+            }
+        });
+        $.getScript('./config.js', () => { });
+        url = window.location.origin + '/thong-tin-thanh-toan/public/js/includes.json';
+        $.getJSON(url, (data, status) => {
+            data.js.forEach(js => {
+                $.getScript('../thong-tin-thanh-toan/public/js/' + js, () => { });
+            });
+        });
+    </script>
+</body>
+
+</html>

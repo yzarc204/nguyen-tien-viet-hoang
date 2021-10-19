@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    width: 400px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 15px 15px;
+    overflow: hidden scroll;
+    background: #000;
+    color: #fff;
+}
+/* ===== PROFILE HEADER ===== */
+.profile-header{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.profile-avatar{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+}
+.profile-info{
+    margin-top: auto;
+    padding: 0px 15px;
+}
+.profile-name{
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+.skills{
+    overflow: hidden;
+}
+.skill-tag{
+    display: inline-block;
+    padding: 3px 10px;
+    margin-right: 5px;
+    color: #fff;
+    font-size: 12px;
+    position: relative;
+}
+.skill-tag:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    opacity: 0.25;
+    border-radius: 5px;
+}
+.title{
+    margin-bottom: 15px;
+}

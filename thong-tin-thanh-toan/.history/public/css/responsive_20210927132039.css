@@ -1,0 +1,21 @@
+@media only screen and (max-width: 410px) {
+    .container {
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 355px) {
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+    .profile-name {
+        font-size: 20px;
+    }
+    .bank {
+        height: 70px;
+    }
+    .bank-info > p {
+        font-size: 12px;
+    }
+}

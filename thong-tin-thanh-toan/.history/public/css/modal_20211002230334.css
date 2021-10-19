@@ -1,0 +1,8 @@
+.modal {
+    width: 100%;
+    background: var(--secondary-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

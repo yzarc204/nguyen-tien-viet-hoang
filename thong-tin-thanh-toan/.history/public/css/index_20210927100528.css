@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    width: 450px;
+    height: 90vh;
+    margin: 5vh auto;
+    padding: 30px 15px;
+    overflow: hidden scroll;
+    background: #000;
+}
+/* ===== PROFILE HEADER ===== */
+.profile-header{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 120px;
+}
+.profile-avatar{
+    width: 100px;
+    height: 120px;
+    border-radius: 20px;
+}
+.profile-info{
+
+}
+.profile-name{
+
+}
+.skills{
+
+}
+.skill-tag{
+
+}
+.title{
+
+}

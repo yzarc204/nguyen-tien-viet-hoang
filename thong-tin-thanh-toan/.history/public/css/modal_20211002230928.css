@@ -1,0 +1,16 @@
+.modal {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modal-header {
+    font-size: 15px;
+    background: var(--header-color);
+    padding: 12px;
+    font-weight: 500;
+}
+.modal-body {
+    background: var(--body-color);
+}

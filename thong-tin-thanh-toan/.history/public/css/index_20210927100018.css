@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    width: 450px;
+    height: 90vh;
+    margin: 5vh auto;
+    overflow: hidden scroll;
+    
+    background: #000;
+}
+/* ===== PROFILE HEADER ===== */
+.profile-header{
+
+}
+.profile-avatar{
+
+}
+.profile-info{
+
+}
+.profile-name{
+
+}
+.skills{
+
+}
+.skill-tag{
+
+}
+.title{
+
+}
