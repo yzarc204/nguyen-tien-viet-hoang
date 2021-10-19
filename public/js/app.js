@@ -1,79 +1,77 @@
-
-
 const json_data = __DATA__;
 
-const username = json_data['name'];
-const cover_img = json_data['cover-image'];
-const avatar_img = json_data['avatar-image']
-const skills = json_data['skills'];
-const bio_storys = json_data['bio-storys']
-const links = json_data['links']
-const page_title = json_data['config']['title'];
-const page_favicon = json_data['config']['favicon'];
+const username = json_data["name"];
+const cover_img = json_data["cover-image"];
+const avatar_img = json_data["avatar-image"];
+const skills = json_data["skills"];
+const bio_storys = json_data["bio-storys"];
+const links = json_data["links"];
+const page_title = json_data["config"]["title"];
+const page_favicon = json_data["config"]["favicon"];
 
 $(document).ready(function () {
+  console.log("READY !");
+  draw_console_header();
 
-    console.log('READY !')
-    draw_console_header();
+  var container = document.getElementsByClassName("container")[0];
+  var bio_story_html = "";
+  var skills_html = "";
+  var links_html = "";
 
-    var container = document.getElementsByClassName('container')[0];
-    var bio_story_html = '';
-    var skills_html = '';
-    var links_html = '';
+  //LOAD CONFIG
+  document.title = page_title;
+  document
+    .getElementById("favicon")
+    .setAttribute("href", `./public/images/${page_favicon}`);
 
-    //LOAD CONFIG
-    document.title = page_title;
-    document.getElementById('favicon').setAttribute('href', `./public/images/${page_favicon}`);
+  //MODAL PROCESS
 
-    //MODAL PROCESS
-    
-    // SHOW NOTICE
-    show_modal(json_data['config']['notice']);
+  // SHOW NOTICE
+  show_modal(json_data["config"]["notice"]);
 
-    // RENDER HEADER
+  // RENDER HEADER
 
-    var split_name = username.split();
-    var first_name = '';
-    var last_name = '';
+  var split_name = username.split();
+  var first_name = "";
+  var last_name = "";
 
-    if (split_name.length <= 2) {
-        first_name = split_name.join(' ');
-    } else if (split_name == 3) {
-        first_name = split_name[0] + split_name[1];
-        last_name = split_name[2];
-    } else if (split_name == 4) {
-        first_name = split_name[0] + split_name[1];
-        last_name = split_name[2] + split_name[3];
-    }
+  if (split_name.length <= 2) {
+    first_name = split_name.join(" ");
+  } else if (split_name == 3) {
+    first_name = split_name[0] + split_name[1];
+    last_name = split_name[2];
+  } else if (split_name == 4) {
+    first_name = split_name[0] + split_name[1];
+    last_name = split_name[2] + split_name[3];
+  }
 
-
-    for (let i = 0; i < skills.length; i++) {
-        if (i % 2 == 0) {
-            skills_html += `
+  for (let i = 0; i < skills.length; i++) {
+    if (i % 2 == 0) {
+      skills_html += `
                 <div class="skill-item" style="color: #EF9D64;" >${skills[i]}</div>
             `;
-        } else {
-            skills_html += `
+    } else {
+      skills_html += `
                 <div class="skill-item" style="color: #85D18A;" >${skills[i]}</div>
             `;
-        }
     }
+  }
 
-    for (let i = 0; i < bio_storys.length; i++) {
-        bio_story_html += `
+  for (let i = 0; i < bio_storys.length; i++) {
+    bio_story_html += `
         <div class="bio-story">
             <div class="bio-story-thumb"
-                style="background-image: url('./public/images/${bio_storys[i]['image']}');"
+                style="background-image: url('./public/images/${bio_storys[i]["image"]}');"
             ></div>
             <div class="bio-story-content">
-                <p>${bio_storys[i]['content']}</p>
-                <span>${bio_storys[i]['author']}</span>
+                <p>${bio_storys[i]["content"]}</p>
+                <span>${bio_storys[i]["author"]}</span>
             </div>
         </div>
         `;
-    }
+  }
 
-    container.innerHTML += `
+  container.innerHTML += `
     <header>
         <div id="cover-image"
             style="background-image: url('./public/images/${cover_img}');"
@@ -83,8 +81,8 @@ $(document).ready(function () {
                 style="background-image: url('./public/images/${avatar_img}');"
             ></div>
             <div id="name">
-                <p id="first-name" class="names">${first_name}</p>
-                <p id="last-name" class="names">${last_name}</p>
+                <span class="names">${username}</span>
+                <ion-icon class="tick" name="checkmark-circle"></ion-icon>
                 <div id="skills">
                     ${skills_html}
                 </div>
@@ -94,31 +92,42 @@ $(document).ready(function () {
     </header>
     `;
 
-    //RENDER CONTENT BODY
+  //RENDER CONTENT BODY
 
-    for (let i = 0; i < links.length; i++) {
-        links_html += `
+  for (let i = 0; i < links.length; i++) {
+    links_html += `
         <div class="link-item">
             <div class="bio-story-thumb"
-            style="background-image: url('./public/images/flatform/${links[i]['image']}');"
+            style="background-image: url('./public/images/flatform/${
+              links[i]["image"]
+            }');"
             ></div>
             <div class="link-content">
-                <p>${links[i]['title']}</p>
+                <p>${links[i]["title"]}</p>
                 <span
-                onclick="${links[i]['type'] == 0 ? `window.open(${"'"}${links[i]['value']}${"'"}, '_blank')` : `copy(${"'"}${links[i]['value']}${"'"})`}"
-                >${links[i]['show-value']}</span>
+                onclick="${
+                  links[i]["type"] == 0
+                    ? `window.open(${"'"}${links[i]["value"]}${"'"}, '_blank')`
+                    : `copy(${"'"}${links[i]["value"]}${"'"})`
+                }"
+                >${links[i]["show-value"]}</span>
             </div>
             <div class="link-btn">
-                <div class="link-btn-chill ${links[i]['type'] == 0 ? 'light-orange' : 'light-blue'}"
-                onclick="${links[i]['type'] == 0 ? `window.open(${"'"}${links[i]['value']}${"'"}, '_blank')` : `copy(${"'"}${links[i]['value']}${"'"})`}"
-                >${links[i]['type'] == 0 ? 'OPEN' : 'COPY'}</div>
+                <div class="link-btn-chill ${
+                  links[i]["type"] == 0 ? "light-orange" : "light-blue"
+                }"
+                onclick="${
+                  links[i]["type"] == 0
+                    ? `window.open(${"'"}${links[i]["value"]}${"'"}, '_blank')`
+                    : `copy(${"'"}${links[i]["value"]}${"'"})`
+                }"
+                >${links[i]["type"] == 0 ? "OPEN" : "COPY"}</div>
             </div>
         </div>
         `;
-    }
+  }
 
-
-    container.innerHTML += `
+  container.innerHTML += `
     <div id="content-body">
         <p class="drop-title">Liên Kết Cá Nhân</p>
         <div id="link-box">
@@ -126,47 +135,45 @@ $(document).ready(function () {
         </div>
     </div>
     `;
-
-
 });
 
-
-// 
+//
 
 function copy(str) {
-    const el = document.createElement('textarea');
-    el.value = str;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
+  const el = document.createElement("textarea");
+  el.value = str;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
 
-    show_modal(`Đã sao chép ${str} vào bộ nhớ tạm !`);
+  show_modal(`Đã sao chép ${str} vào bộ nhớ tạm !`);
 
-    console.log(`Copied ${str}`)
+  console.log(`Copied ${str}`);
 }
 
-function show_modal(str){
-    document.getElementById('description').innerText = str;
-    document.getElementsByClassName("popup")[0].classList.add("active");
-
+function show_modal(str) {
+  document.getElementById("description").innerText = str;
+  document.getElementsByClassName("popup")[0].classList.add("active");
 }
 
-document.getElementById("dismiss-popup-btn").addEventListener("click", function () {
+document
+  .getElementById("dismiss-popup-btn")
+  .addEventListener("click", function () {
     document.getElementsByClassName("popup")[0].classList.remove("active");
-});
+  });
 
 function draw_console_header() {
-    // console.log(`                                            
-    // _   _                                _____ _               _   _ _      _      _   _                         
-    // | \ | |                              |_   _(_)             | | | (_)    | |    | | | |                        
-    // |  \| | __ _ _   _ _   _  ___ _ __     | |  _  ___ _ __    | | | |_  ___| |_   | |_| | ___   __ _ _ __   __ _ 
-    // | . ` |/ _` | | | | | | |/ _ \ '_ \    | | | |/ _ \ '_ \   | | | | |/ _ \ __|  |  _  |/ _ \ / _` | '_ \ / _` |
-    // | |\  | (_| | |_| | |_| |  __/ | | |   | | | |  __/ | | |  \ \_/ / |  __/ |_   | | | | (_) | (_| | | | | (_| |
-    // \_| \_/\__, |\__,_|\__, |\___|_| |_|   \_/ |_|\___|_| |_|   \___/|_|\___|\__|  \_| |_/\___/ \__,_|_| |_|\__, |
-    //         __/ |       __/ |                                                                                __/ |
-    //        |___/       |___/                                                                                |___/ 
-    // Source code by :  Nguyễn Tiến Việt Hoàng
-    // Facebook : https://www.facebook.com/iamhoang.info/
-    // `);
+  // console.log(`
+  // _   _                                _____ _               _   _ _      _      _   _
+  // | \ | |                              |_   _(_)             | | | (_)    | |    | | | |
+  // |  \| | __ _ _   _ _   _  ___ _ __     | |  _  ___ _ __    | | | |_  ___| |_   | |_| | ___   __ _ _ __   __ _
+  // | . ` |/ _` | | | | | | |/ _ \ '_ \    | | | |/ _ \ '_ \   | | | | |/ _ \ __|  |  _  |/ _ \ / _` | '_ \ / _` |
+  // | |\  | (_| | |_| | |_| |  __/ | | |   | | | |  __/ | | |  \ \_/ / |  __/ |_   | | | | (_) | (_| | | | | (_| |
+  // \_| \_/\__, |\__,_|\__, |\___|_| |_|   \_/ |_|\___|_| |_|   \___/|_|\___|\__|  \_| |_/\___/ \__,_|_| |_|\__, |
+  //         __/ |       __/ |                                                                                __/ |
+  //        |___/       |___/                                                                                |___/
+  // Source code by :  Nguyễn Tiến Việt Hoàng
+  // Facebook : https://www.facebook.com/iamhoang.info/
+  // `);
 }
